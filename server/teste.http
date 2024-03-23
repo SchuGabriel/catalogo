@@ -1,0 +1,10 @@
+POST http://localhost:4000/api/dados
+Content-Type: application/json
+
+{
+    "codigo": "001",
+    "carro": "Toyota",
+    "motor": "V6",
+    "anoDe": "2020",
+    "anoAte": "2022"
+}
