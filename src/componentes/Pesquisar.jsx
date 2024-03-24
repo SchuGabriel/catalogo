@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import "../../style/style.css"
 
 const Pesquisar = () => {
   const [codigo, setCodgio] = useState('');
@@ -12,7 +13,8 @@ const Pesquisar = () => {
   }
 
   return (
-    <div>
+    <div className='container'>
+    <div className='form-container'>
       <h2>Pesquisar</h2>
       <form onSubmit={handleSubmit}>
         <div>
@@ -23,6 +25,7 @@ const Pesquisar = () => {
         </div>
         <button type="submit">Pesquisar</button>
       </form>
+    </div>
     </div>
   );
 };

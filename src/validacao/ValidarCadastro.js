@@ -21,11 +21,19 @@ export function validarCadastro(dados, manutencao){
             alert("O Ano inicial não pode ser nulo");
             return false;
         }
+
+        if (confirm("Deseja cadastrar?")!=true){
+            return false;
+        }
     }
 
     if (manutencao == "deletar"){
         if (dados.codigo == ""){
             alert("O código não pode ser nulo para deletar");
+            return false;
+        }
+        if (confirm("Deseja deletar?")!=true){
+            alert("Operacação cancelada")
             return false;
         }
     }

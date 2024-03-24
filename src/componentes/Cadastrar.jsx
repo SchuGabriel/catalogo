@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { validarCadastro } from '../validacao/ValidarCadastro'; 
+import "../../style/style.css"
 
 const Cadastrar = () => {
   const [formulario, setFormulario] = useState({
@@ -34,7 +35,8 @@ const Cadastrar = () => {
   };
 
   return (
-    <div>
+    <div className='container'>
+    <div className='form-container'>
       <h2>Cadastrar Aplicação</h2>
       <form onSubmit={handleSubmit}>
         <div>
@@ -63,6 +65,7 @@ const Cadastrar = () => {
         </div>
         <button type="submit">Cadastrar</button>
       </form>
+    </div>
     </div>
   );
 };

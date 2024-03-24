@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { validarCadastro } from '../validacao/ValidarCadastro'; 
+import { validarCadastro } from '../validacao/ValidarCadastro';
+import "../../style/style.css"
 
 const Deletar = () => {
   const [formulario, setFormulario] = useState({
@@ -20,15 +21,17 @@ const Deletar = () => {
   };
 
   return (
-    <div>
-      <h2>Deletar Aplicação</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Codigo:</label>
-          <input type="text" name="codigo" value={formulario.codigo} onChange={handleChange} />
-        </div>
-        <button type="submit">Deletar</button>
-      </form>
+    <div className='container'>
+      <div className='form-container'>
+        <h2>Deletar Aplicação</h2>
+        <form onSubmit={handleSubmit}>
+          <div>
+            <label>Codigo:</label>
+            <input type="text" name="codigo" value={formulario.codigo} onChange={handleChange} />
+          </div>
+          <button type="submit">Deletar</button>
+        </form>
+      </div>
     </div>
   );
 };
