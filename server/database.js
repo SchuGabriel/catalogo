@@ -7,7 +7,7 @@ async function insertData(client, dbName, collectionName, data) {
         console.log("Data inserted successfully.");
     } catch (error) {
         console.error("Error inserting data:", error);
-        throw error; // Rethrow the error to propagate it back to the caller
+        throw error; 
     }
 }
 
