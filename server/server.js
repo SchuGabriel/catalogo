@@ -36,32 +36,6 @@ app.post("/cadastrar", async (req, res) => {
   }
 });
 
-// Rota para receber os dados do formulário e inserir no MongoDB
-app.post("/consultar", async (req, res) => {
-  try {
-    const { codigo, carro, motor, anoDe, anoAte } = req.body;
-    // Chama a função para inserir dados no banco de dados
-    await insertData(client, "catalogo", "veiculo", { codigo, carro, motor, anoDe, anoAte });
-    res.status(201).json({ message: "Dado inserido com sucesso." });
-  } catch (error) {
-    console.error("Erro ao inserir dado no MongoDB:", error);
-    res.status(500).json({ message: "Erro ao inserir dado." });
-  }
-});
-
-// Rota para receber os dados do formulário e inserir no MongoDB
-app.post("/deletar", async (req, res) => {
-  try {
-    const { codigo, carro, motor, anoDe, anoAte } = req.body;
-    // Chama a função para inserir dados no banco de dados
-    await insertData(client, "catalogo", "veiculo", { codigo, carro, motor, anoDe, anoAte });
-    res.status(201).json({ message: "Dado inserido com sucesso." });
-  } catch (error) {
-    console.error("Erro ao inserir dado no MongoDB:", error);
-    res.status(500).json({ message: "Erro ao inserir dado." });
-  }
-});
-
 // Inicia a conexão com o MongoDB e o servidor
 connectToMongoDB().then(() => {
   app.listen(PORT, () => {

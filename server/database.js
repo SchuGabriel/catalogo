@@ -1,14 +1,14 @@
 // Função para inserir dados no banco de dados
 async function insertData(client, dbName, collectionName, data) {
-
-    // Verifica se todos os campos necessários estão presentes
-    if (!codigo || !nome || !carro || !motor) {
-        return res.status(400).json({ message: "Todos os campos são obrigatórios." });
+    try {
+        const database = client.db(dbName);
+        const collection = database.collection(collectionName);
+        await collection.insertOne(data);
+        console.log("Data inserted successfully.");
+    } catch (error) {
+        console.error("Error inserting data:", error);
+        throw error; // Rethrow the error to propagate it back to the caller
     }
-
-    const database = client.db(dbName);
-    const collection = database.collection(collectionName);
-    await collection.insertOne(data);
 }
 
 // Função para deletar dados do banco de dados
