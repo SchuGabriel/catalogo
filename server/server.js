@@ -7,6 +7,9 @@ const { insertData, deleteData, updateData } = require("./database");
 const app = express();
 const PORT = 4000;
 
+const banco = "catalogo";
+const tabela = "veiculo"
+
 app.use(bodyParser.json());
 app.use(cors());
 
@@ -28,8 +31,51 @@ app.post("/cadastrar", async (req, res) => {
   try {
     const { codigo, carro, motor, anoDe, anoAte } = req.body;
     // Chama a função para inserir dados no banco de dados
-    await insertData(client, "catalogo", "veiculo", { codigo, carro, motor, anoDe, anoAte });
+    await insertData(client, banco, "veiculo", { codigo, carro, motor, anoDe, anoAte });
     res.status(201).json({ message: "Dado inserido com sucesso." });
+  } catch (error) {
+    console.error("Erro ao inserir dado no MongoDB:", error);
+    res.status(500).json({ message: "Erro ao inserir dado." });
+  }
+});
+
+// Rota para receber os dados do formulário e deletar no MongoDB
+app.post("/deletar", async (req, res) => {
+  try {
+    const { codigo } = req.body;
+
+    // Chama a função para deletar dados no banco de dados
+    await deleteData(client, banco, tabela, { codigo });
+    res.status(201).json({ message: "Dado inserido com sucesso." });
+  } catch (error) {
+    console.error("Erro ao inserir dado no MongoDB:", error);
+    res.status(500).json({ message: "Erro ao inserir dado." });
+  }
+});
+
+// Rota para receber os dados do formulário e resgatar no MongoDB
+app.get("/consultar", async (req, res) => {
+  try {
+    const { codigo } = req.body;
+
+    // Chama a função para deletar dados no banco de dados
+    const result = await searchData(client, banco, tabela, { codigo });
+    res.json(result);
+    res.status(201).json({ message: "Dado inserido com sucesso." });
+  } catch (error) {
+    console.error("Erro ao inserir dado no MongoDB:", error);
+    res.status(500).json({ message: "Erro ao inserir dado." });
+  }
+});
+
+// Rota para receber os dados do formulário e resgatar no MongoDB
+app.put("/editar", async (req, res) => {
+  try {
+    const { codigo, carro, motor, anoDe, anoAte } = req.body;
+
+    // Chama a função para alterar dados no banco de dados
+    const result = await updateData(client, banco, tabela, { codigo }, { codigo, carro, motor, anoDe, anoAte });
+    res.status(201).json({ message: "Dados alterados com sucesso." });
   } catch (error) {
     console.error("Erro ao inserir dado no MongoDB:", error);
     res.status(500).json({ message: "Erro ao inserir dado." });
