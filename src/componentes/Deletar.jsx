@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import { validarCadastro } from '../validacao/ValidarCadastro';
 import "../../style/style.css"
 
@@ -12,11 +13,17 @@ const Deletar = () => {
     setFormulario({ ...formulario, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(formulario)
     if (validarCadastro(formulario, "deletar")){
-      alert("Validou")
+      try {
+        await axios.post('http://localhost:4000/deletar', formulario);
+        alert('Aplicação deletada com sucesso!');
+      } catch (error) {
+        console.error('Erro ao cadastrar os dados:', error);
+        alert('Erro ao deletar a aplicação. Por favor, tente novamente.');
+      }
     }
   };
 

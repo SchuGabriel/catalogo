@@ -3,7 +3,7 @@ import axios from 'axios';
 import { validarCadastro } from '../validacao/ValidarCadastro'; 
 import "../../style/style.css"
 
-const Cadastrar = () => {
+const Editar = () => {
   const [formulario, setFormulario] = useState({
     codigo: '',
     nome: '',
@@ -21,22 +21,15 @@ const Cadastrar = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(formulario);
-    if (validarCadastro(formulario,"cadastro")){
-      try {
-        // Faz uma requisição POST para o servidor na porta 4000
-        await axios.post('http://localhost:4000/cadastrar', formulario);
-        alert('Dados cadastrados com sucesso!');
-      } catch (error) {
-        console.error('Erro ao cadastrar os dados:', error);
-        alert('Erro ao cadastrar os dados. Por favor, tente novamente.');
-      }
+    if (validarCadastro(formulario,"edicao")){
+      alert("Validou");
     }
   };
 
   return (
     <div className='container'>
     <div className='form-container'>
-      <h2>Cadastrar Aplicação</h2>
+      <h2>Editar Aplicação</h2>
       <form onSubmit={handleSubmit}>
         <div>
           <label>Codigo:</label>
@@ -62,11 +55,11 @@ const Cadastrar = () => {
           <label>Até:</label>
           <input type="date" name="anoAte" value={formulario.anoAte} onChange={handleChange} />
         </div>
-        <button type="submit">Cadastrar</button>
+        <button type="submit">Editar</button>
       </form>
     </div>
     </div>
   );
 };
 
-export default Cadastrar;
+export default Editar;
