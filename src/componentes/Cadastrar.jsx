@@ -9,8 +9,7 @@ const Cadastrar = () => {
     nome: '',
     carro: '',
     motor: '',
-    anoDe: '',
-    anoAte: ''
+    ano: ''
   });
 
   const handleChange = (e) => {
@@ -55,12 +54,8 @@ const Cadastrar = () => {
           <input type="text" name="motor" value={formulario.motor} onChange={handleChange} />
         </div>
         <div>
-          <label>De:</label>
-          <input type="date" name="anoDe" value={formulario.anoDe} onChange={handleChange} />
-        </div>
-        <div>
-          <label>Até:</label>
-          <input type="date" name="anoAte" value={formulario.anoAte} onChange={handleChange} />
+          <label>Ano:</label>
+          <input type="text" name="ano" value={formulario.ano} onChange={handleChange} />
         </div>
         <button type="submit">Cadastrar</button>
       </form>

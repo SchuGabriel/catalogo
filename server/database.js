@@ -42,7 +42,7 @@ async function searchData(client, dbName, collectionName, query, data) {
         const database = client.db(dbName);
         const collection = database.collection(collectionName);
         const result = await collection.findOne( data );
-        console.log("result");
+        console.log(result);
         return result;
     } catch (error){
         console.error("Erro:", error);

@@ -1,31 +1,58 @@
 import React, { useState } from 'react';
-import "../../style/style.css"
+import axios from 'axios';
 
 const Pesquisar = () => {
-  const [codigo, setCodgio] = useState('');
-  const [carro, setCarro] = useState('');
-  const [motor, setMotor] = useState('');
-  const [ano, setAno] = useState('');
+  const [codigo, setCodigo] = useState('');
+  const [resultados, setResultados] = useState([]);
+  const [erro, setErro] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleChange = (e) => {
+    setCodigo(e.target.value);
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    alert("Pesquisou");
-  }
+    
+    try {
+      const response = await axios.get(`http://localhost:4000/pesquisar?codigo=${codigo}`);
+      const data = response.data;
+
+
+      if (data.message) {
+        setErro(data.message);
+        setResultados([]);
+      } else {
+        setResultados([data]);
+        setErro('');
+      }
+      console.log(data)
+      console.log(resultados)
+    } catch (error) {
+      console.error('Erro ao pesquisar dados:', error);
+      setErro('Erro ao pesquisar dados. Por favor, tente novamente.');
+      setResultados([]);
+    }
+  };
 
   return (
-    <div className='container'>
-    <div className='form-container'>
-      <h2>Pesquisar</h2>
+    <div>
       <form onSubmit={handleSubmit}>
-        <div>
-          <label>Codigo:<input type="text" value={codigo}/></label>
-          <label> Carro:<input type="text" value={carro}/></label>
-          <label> Motor:<input type="text" value={motor}/></label>
-          <label> Ano:<input type="date" value={ano}/></label>
-        </div>
+        <input type="text" value={codigo} onChange={handleChange} />
         <button type="submit">Pesquisar</button>
       </form>
-    </div>
+      {erro && <p>{erro}</p>}
+      {resultados.length > 0 && (
+  <ul>
+    {resultados.map((item, index) => (
+      <li key={index}>
+        <p>Código: {item.codigo}</p>
+        <p>Carro: {item.carro}</p>
+        <p>Motor: {item.motor}</p>
+        <p>Ano: {item.ano}</p>
+      </li>
+    ))}
+  </ul>
+)}
     </div>
   );
 };
