@@ -53,21 +53,30 @@ app.post("/deletar", async (req, res) => {
   }
 });
 
-// Rota para receber os dados do formulário e resgatar no MongoDB
 app.get("/pesquisar", async (req, res) => {
   try {
-    const { codigo } = req.query;
+    const query = {};
+
+    // Verifique se cada parâmetro de consulta está presente e adicione-o à consulta
+    if (req.query.codigo) query.codigo = req.query.codigo;
+    if (req.query.nome) query.nome = req.query.nome;
+    if (req.query.carro) query.carro = req.query.carro;
+    if (req.query.motor) query.motor = req.query.motor;
+    if (req.query.ano) query.ano = req.query.ano;
+
+    // Remova campos vazios ou nulos da consulta
+    Object.keys(query).forEach((key) => query[key] == null && delete query[key]);
 
     // Chama a função para resgatar dados no banco de dados
-    const result = await searchData(client, banco, tabela, { codigo }, {});
+    const result = await searchData(client, banco, tabela, query);
     if (!result) {
       res.status(404).json({ message: "Nenhum resultado encontrado." });
     } else {
       res.status(200).json(result);
     }
   } catch (error) {
-    console.error("Erro ao inserir dado no MongoDB:", error);
-    res.status(500).json({ message: "Erro ao inserir dado." });
+    console.error("Erro ao pesquisar dados no MongoDB:", error);
+    res.status(500).json({ message: "Erro ao pesquisar dados." });
   }
 });
 
