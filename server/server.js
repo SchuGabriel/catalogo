@@ -56,7 +56,7 @@ app.post("/deletar", async (req, res) => {
 // Rota para receber os dados do formulário e resgatar no MongoDB
 app.get("/pesquisar", async (req, res) => {
   try {
-    const { codigo } = req.body;
+    const { codigo } = req.query;
 
     // Chama a função para resgatar dados no banco de dados
     const result = await searchData(client, banco, tabela, { codigo }, {});

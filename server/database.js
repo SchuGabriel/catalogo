@@ -37,18 +37,18 @@ async function updateData(client, dbName, collectionName, query, newData) {
 }
 
 // Função para resgatar dados no banco de dados
-async function searchData(client, dbName, collectionName, query, data) {
-    try{
-        const database = client.db(dbName);
-        const collection = database.collection(collectionName);
-        const result = await collection.findOne( data );
-        console.log(result);
-        return result;
-    } catch (error){
-        console.error("Erro:", error);
-        throw error; 
+async function searchData(client, dbName, collectionName, query) {
+    try {
+      const database = client.db(dbName);
+      const collection = database.collection(collectionName);
+      const result = await collection.findOne(query);
+      console.log(result);
+      return result;
+    } catch (error) {
+      console.error("Erro ao pesquisar dados:", error);
+      throw error;
     }
-}
+  }
 
 module.exports = {
     insertData,
