@@ -29,9 +29,9 @@ async function connectToMongoDB() {
 // Rota para receber os dados do formulário e inserir no MongoDB
 app.post("/cadastrar", async (req, res) => {
   try {
-    const { codigo, carro, motor, ano } = req.body;
+    const { codigo, nome, carro, motor, ano } = req.body;
     // Chama a função para inserir dados no banco de dados
-    await insertData(client, banco, "veiculo", { codigo, carro, motor, ano });
+    await insertData(client, banco, "veiculo", { codigo, nome, carro, motor, ano });
     res.status(201).json({ message: "Dado inserido com sucesso." });
   } catch (error) {
     console.error("Erro ao inserir dado no MongoDB:", error);

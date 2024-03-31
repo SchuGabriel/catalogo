@@ -4,10 +4,10 @@ Content-Type: application/json
 
 {
     "codigo": "002",
+    "nome": "Nome",
     "carro": "Toyota",
     "motor": "V6",
-    "anoDe": "2020",
-    "anoAte": "2022"
+    "ano": "2020"
 }
 
 ### Request 2

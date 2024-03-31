@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { validarCadastro } from '../validacao/ValidarCadastro'; 
+import { validarCadastro } from '../validacao/ValidarCadastro';
 import "../../style/style.css"
 
 const Cadastrar = () => {
@@ -20,7 +20,7 @@ const Cadastrar = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(formulario);
-    if (validarCadastro(formulario,"cadastro")){
+    if (validarCadastro(formulario, "cadastro")) {
       try {
         // Faz uma requisição POST para o servidor na porta 4000
         await axios.post('http://localhost:4000/cadastrar', formulario);
@@ -34,32 +34,32 @@ const Cadastrar = () => {
 
   return (
     <div className='container'>
-    <div className='form-container'>
-      <h2>Cadastrar Aplicação</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Codigo:</label>
-          <input type="text" name="codigo" value={formulario.codigo} onChange={handleChange} />
-        </div>
-        <div>
-          <label>Nome:</label>
-          <input type="text" name="nome" value={formulario.nome} onChange={handleChange} />
-        </div>
-        <div>
-          <label>Carro:</label>
-          <input type="text" name="carro" value={formulario.carro} onChange={handleChange} />
-        </div>
-        <div>
-          <label>Motor:</label>
-          <input type="text" name="motor" value={formulario.motor} onChange={handleChange} />
-        </div>
-        <div>
-          <label>Ano:</label>
-          <input type="text" name="ano" value={formulario.ano} onChange={handleChange} />
-        </div>
-        <button type="submit">Cadastrar</button>
-      </form>
-    </div>
+      <div className='form-container'>
+        <h2>Cadastrar Aplicação</h2>
+        <form onSubmit={handleSubmit}>
+          <div>
+            <label>Codigo:</label>
+            <input type="text" name="codigo" value={formulario.codigo} onChange={handleChange} />
+          </div>
+          <div>
+            <label>Nome:</label>
+            <input type="text" name="nome" value={formulario.nome} onChange={handleChange} />
+          </div>
+          <div>
+            <label>Carro:</label>
+            <input type="text" name="carro" value={formulario.carro} onChange={handleChange} />
+          </div>
+          <div>
+            <label>Motor:</label>
+            <input type="text" name="motor" value={formulario.motor} onChange={handleChange} />
+          </div>
+          <div>
+            <label>Ano:</label>
+            <input type="text" name="ano" value={formulario.ano} onChange={handleChange} />
+          </div>
+          <button type="submit">Cadastrar</button>
+        </form>
+      </div>
     </div>
   );
 };
