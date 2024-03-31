@@ -83,12 +83,11 @@ app.get("/pesquisar", async (req, res) => {
 // Rota para receber os dados do formulário e resgatar no MongoDB
 app.put("/editar", async (req, res) => {
   try {
-    const { codigo, carro, motor, ano } = req.body;
-
+    const { codigo, nome, carro, motor, ano } = req.body;
+    console.log("Dados recebidos no backend:", { codigo, nome, carro, motor, ano });
     // Chama a função para alterar dados no banco de dados
-    await updateData(client, banco, tabela, { codigo }, { codigo, carro, motor, ano });
+    await updateData(client, banco, tabela, { codigo }, { codigo, nome, carro, motor, ano });
     res.status(201).json({ message: "Dados alterados com sucesso." });
-    console.log("Editou");
   } catch (error) {
     console.error("Erro ao inserir dado no MongoDB:", error);
     res.status(500).json({ message: "Erro ao inserir dado." });

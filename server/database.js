@@ -29,7 +29,15 @@ async function updateData(client, dbName, collectionName, query, newData) {
     try{
         const database = client.db(dbName);
         const collection = database.collection(collectionName);
-        await collection.updateOne(query, { $set: newData });
+        delete newData.codigo;
+        const result = await collection.updateOne(query, { $set: newData });
+        if (result.modifiedCount === 1) {
+            console.log("Dados alterados com sucesso.");
+            return true;
+        } else {
+            console.log("Nenhum documento foi modificado.");
+            return false;
+        }
     } catch (error){
         console.error("Erro:", error);
         throw error; 

@@ -31,9 +31,9 @@ PUT http://localhost:4000/editar
 Content-Type: application/json
 
 {
-    "codigo": "002",
+    "codigo": "2",
+    "nome": "Nome",
     "carro": "Hyundai",
     "motor": "V8",
-    "anoDe": "2022",
-    "anoAte": "2024"
+    "ano": "2022"
 }

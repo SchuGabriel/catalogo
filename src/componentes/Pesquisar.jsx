@@ -76,6 +76,7 @@ const Pesquisar = () => {
             {resultados.map((item, index) => (
               <li key={index}>
                 <p>Código: {item.codigo}</p>
+                <p>Nome: {item.nome}</p>
                 <p>Carro: {item.carro}</p>
                 <p>Motor: {item.motor}</p>
                 <p>Ano: {item.ano}</p>
