@@ -22,7 +22,7 @@ const Pesquisar = () => {
     e.preventDefault();
     try {
       const queryParams = Object.entries(formulario)
-        .filter(([key, value]) => value.trim() !== '') // Filtrar campos não vazios
+        .filter(([key, value]) => value.trim() !== '') // Filtrar os campos não vazios
         .map(([key, value]) => `${key}=${encodeURIComponent(value)}`) // Codificar valores para URL
         .join('&'); // Unir os pares chave=valor com &
       
@@ -33,7 +33,7 @@ const Pesquisar = () => {
         setErro(data.message);
         setResultados([]);
       } else {
-        setResultados([data]);
+        setResultados(data);
         setErro('');
       }
     } catch (error) {
