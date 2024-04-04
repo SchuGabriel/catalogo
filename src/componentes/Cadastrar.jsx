@@ -22,7 +22,6 @@ const Cadastrar = () => {
     console.log(formulario);
     if (validarCadastro(formulario, "cadastro")) {
       try {
-        // Faz uma requisição POST para o servidor na porta 4000
         await axios.post('http://localhost:4000/cadastrar', formulario);
         alert('Dados cadastrados com sucesso!');
       } catch (error) {

@@ -1,24 +1,27 @@
-/* style.css */
+body{
+  background-color: #222;
+}
 
 /* Estilo para o contêiner principal */
 .container {
   display: flex;
-  justify-content: center;
+  flex-direction: column; /* Mudança para empilhar elementos verticalmente */
   align-items: center;
-  margin-top: 50px;
+  margin-top: 150px;
   height: 100vh;
   width: 100vh;
-  background-color: #222; /* Cor de fundo escura */
   color: #fff; /* Cor do texto branca */
 }
 
 .form-container {
   max-width: 600px;
+  width: 100%; /* Ocupa toda a largura do contêiner pai */
   padding: 20px;
   border: 1px solid #ffffff; /* Cor da borda mais escura */
   border-radius: 8px;
   background-color: #444; /* Cor de fundo mais escura */
   box-sizing: border-box;
+  margin-bottom: 20px; /* Adicionado espaço entre o formulário e os resultados */
 }
 
 /* Estilo para o título */
@@ -34,9 +37,19 @@ label {
   color: #ffffff; /* Cor do texto mais clara */
 }
 
+.input-group {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.input-group .form-group {
+  flex: 1;
+  margin-right: 10px;
+}
+
 input[type="text"],
 input[type="date"] {
-  width: calc(100% - 10px);
+  width: 100%;
   padding: 8px;
   border: 1px solid #444; /* Cor da borda mais escura */
   border-radius: 4px;
@@ -61,60 +74,33 @@ button[type="submit"]:hover {
   background-color: #0056b3; /* Mantido o mesmo azul mais escuro para hover */
 }
 
+/* Estilos para o contêiner de resultados */
+.result-container {
+  width: calc(100% - 100px); /* Ajuste da largura para compensar a margem esquerda e direita */
+  margin-left: 50px; /* Adicionando margem esquerda */
+  margin-right: 50px; /* Adicionando margem direita */
+}
 
-/*
-.container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 50px;
-    height: 100vh;
-    width: 100vh;
-  }
-  
-  .form-container {
-    max-width: 600px;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    background-color: #f9f9f9;
-    box-sizing: border-box;
-  }
-  
-  # Estilo para o título 
-  h2 {
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  
-  # Estilo para os campos de entrada e rótulos 
-  label {
-    display: block;
-    margin-bottom: 5px;
-  }
-  
-  input[type="text"],
-  input[type="date"] {
-    width: calc(100% - 10px);
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-  
-  # Estilo para o botão 
-  button[type="submit"] {
-    width: 100%;
-    padding: 10px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    margin-top: 10px;
-    margin-left: 4px;
-    cursor: pointer;
-  }
-  
-  button[type="submit"]:hover {
-    background-color: #0056b3;
-  }
-*/
+.result-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.result-item {
+  background-color: #444;
+  border: 1px solid #ffffff;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.result-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.result-group p {
+  margin: 5px 0;
+}

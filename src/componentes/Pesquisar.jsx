@@ -22,9 +22,9 @@ const Pesquisar = () => {
     e.preventDefault();
     try {
       const queryParams = Object.entries(formulario)
-        .filter(([key, value]) => value.trim() !== '') // Filtrar os campos não vazios
-        .map(([key, value]) => `${key}=${encodeURIComponent(value)}`) // Codificar valores para URL
-        .join('&'); // Unir os pares chave=valor com &
+        .filter(([key, value]) => value.trim() !== '')
+        .map(([key, value]) => `${key}=${encodeURIComponent(value)}`)
+        .join('&'); 
       
       const response = await axios.get(`http://localhost:4000/pesquisar?${queryParams}`);
       const data = response.data;
@@ -48,38 +48,46 @@ const Pesquisar = () => {
       <div className='form-container'>
         <h2>Pesquisar Aplicação</h2>
         <form onSubmit={handleSubmit}>
-          <div>
-            <label>Codigo:</label>
-            <input type="text" name="codigo" value={formulario.codigo} onChange={handleChange} />
+          <div className="form-row">
+            <div className="form-group">
+              <label>Codigo:</label>
+              <input type="text" name="codigo" value={formulario.codigo} onChange={handleChange} />
+            </div>
+            <div className="form-group">
+              <label>Nome:</label>
+              <input className='input' type="text" name="nome" value={formulario.nome} onChange={handleChange} />
+            </div>
           </div>
-          <div>
-            <label>Nome:</label>
-            <input type="text" name="nome" value={formulario.nome} onChange={handleChange} />
-          </div>
-          <div>
-            <label>Carro:</label>
-            <input type="text" name="carro" value={formulario.carro} onChange={handleChange} />
-          </div>
-          <div>
-            <label>Motor:</label>
-            <input type="text" name="motor" value={formulario.motor} onChange={handleChange} />
-          </div>
-          <div>
-            <label>Ano:</label>
-            <input type="text" name="ano" value={formulario.ano} onChange={handleChange} />
+          <div className="form-row">
+            <div className="form-group">
+              <label>Carro:</label>
+              <input type="text" name="carro" value={formulario.carro} onChange={handleChange} />
+            </div>
+            <div className="form-group">
+              <label>Motor:</label>
+              <input type="text" name="motor" value={formulario.motor} onChange={handleChange} />
+            </div>
+            <div className="form-group">
+              <label>Ano:</label>
+              <input type="text" name="ano" value={formulario.ano} onChange={handleChange} />
+            </div>
           </div>
           <button type="submit">Pesquisar</button>
         </form>
         {erro && <p>{erro}</p>}
+      </div>
+      <div className='result-container'>
         {resultados.length > 0 && (
-          <ul>
+          <ul className='result-list'>
             {resultados.map((item, index) => (
-              <li key={index}>
-                <p>Código: {item.codigo}</p>
-                <p>Nome: {item.nome}</p>
-                <p>Carro: {item.carro}</p>
-                <p>Motor: {item.motor}</p>
-                <p>Ano: {item.ano}</p>
+              <li key={index} className="result-item">
+                <div className="result-group">                  
+                  <p>Código: {item.codigo}</p>
+                  <p>Nome: {item.nome}</p>
+                  <p>Carro: {item.carro}</p>
+                  <p>Motor: {item.motor}</p>
+                  <p>Ano: {item.ano}</p>
+                </div>
               </li>
             ))}
           </ul>
