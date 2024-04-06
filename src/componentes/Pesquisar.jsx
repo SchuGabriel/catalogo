@@ -67,7 +67,26 @@ const Pesquisar = () => {
       <div className='form-container'>
         <h2>Pesquisar Aplicação</h2>
         <form onSubmit={handleSubmit}>
-          {/* Inputs do formulário */}
+          <div>
+            <label htmlFor="codigo">Código:</label>
+            <input type="text" id="codigo" name="codigo" value={formulario.codigo} onChange={handleChange} />
+          </div>
+          <div>
+            <label htmlFor="nome">Nome:</label>
+            <input type="text" id="nome" name="nome" value={formulario.nome} onChange={handleChange} />
+          </div>
+          <div>
+            <label htmlFor="carro">Carro:</label>
+            <input type="text" id="carro" name="carro" value={formulario.carro} onChange={handleChange} />
+          </div>
+          <div>
+            <label htmlFor="motor">Motor:</label>
+            <input type="text" id="motor" name="motor" value={formulario.motor} onChange={handleChange} />
+          </div>
+          <div>
+            <label htmlFor="ano">Ano:</label>
+            <input type="text" id="ano" name="ano" value={formulario.ano} onChange={handleChange} />
+          </div>
           <button type="submit">Pesquisar</button>
         </form>
         {erro && <p>{erro}</p>}
