@@ -104,3 +104,22 @@ button[type="submit"]:hover {
 .result-group p {
   margin: 5px 0;
 }
+
+.result-item {
+  position: relative;
+}
+
+.button-group {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.edit-button {
+  margin-right: 5px;
+}
+
+.delete-button {
+  background-color: red;
+  color: white;
+}

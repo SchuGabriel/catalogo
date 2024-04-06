@@ -43,35 +43,31 @@ const Pesquisar = () => {
     }
   };
 
+  const handleDelete = async (index) => {
+    const itemDelet = resultados[index];
+    console.log("Deletando: ", itemDelet);
+    try {
+      await axios.post('http://localhost:4000/deletar', itemDelet);
+      alert('Aplicação deletada com sucesso!');
+      const updatedResults = [...resultados];
+      updatedResults.splice(index, 1);
+      setResultados(updatedResults);
+    } catch (error) {
+      console.error('Erro ao deletar a aplicação:', error);
+      alert('Erro ao deletar a aplicação. Por favor, tente novamente.');
+    }    
+  }; 
+
+  const handleEdit = async (index) => {
+    // Implementar lógica de edição
+  };
+
   return (
     <div className='container'>
       <div className='form-container'>
         <h2>Pesquisar Aplicação</h2>
         <form onSubmit={handleSubmit}>
-          <div className="form-row">
-            <div className="form-group">
-              <label>Codigo:</label>
-              <input type="text" name="codigo" value={formulario.codigo} onChange={handleChange} />
-            </div>
-            <div className="form-group">
-              <label>Nome:</label>
-              <input className='input' type="text" name="nome" value={formulario.nome} onChange={handleChange} />
-            </div>
-          </div>
-          <div className="form-row">
-            <div className="form-group">
-              <label>Carro:</label>
-              <input type="text" name="carro" value={formulario.carro} onChange={handleChange} />
-            </div>
-            <div className="form-group">
-              <label>Motor:</label>
-              <input type="text" name="motor" value={formulario.motor} onChange={handleChange} />
-            </div>
-            <div className="form-group">
-              <label>Ano:</label>
-              <input type="text" name="ano" value={formulario.ano} onChange={handleChange} />
-            </div>
-          </div>
+          {/* Inputs do formulário */}
           <button type="submit">Pesquisar</button>
         </form>
         {erro && <p>{erro}</p>}
@@ -87,6 +83,10 @@ const Pesquisar = () => {
                   <p>Carro: {item.carro}</p>
                   <p>Motor: {item.motor}</p>
                   <p>Ano: {item.ano}</p>
+                  <div className="button-group">
+                    <button onClick={() => handleEdit(index)}>Editar</button>
+                    <button onClick={() => handleDelete(index)}>Deletar</button>
+                  </div>
                 </div>
               </li>
             ))}
