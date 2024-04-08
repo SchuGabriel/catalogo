@@ -59,7 +59,15 @@ const Pesquisar = () => {
   }; 
 
   const handleEdit = async (index) => {
-    // Implementar lógica de edição
+    const item = resultados[index];
+    setFormulario({
+      codigo: item.codigo,
+      nome: item.nome,
+      carro: item.carro,
+      motor: item.motor,
+      ano: item.ano
+    });
+    history.push('/editar'); // Use o objeto history obtido do useHistory para navegar para a página de edição
   };
 
   return (

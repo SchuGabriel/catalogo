@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { validarCadastro } from '../validacao/ValidarCadastro'; 
+import { validarCadastro } from '../validacao/ValidarCadastro';
 import "../../style/style.css"
 
 const Editar = () => {
@@ -26,10 +26,38 @@ const Editar = () => {
         console.log(response.data);
       } catch (error) {
         console.error('Erro ao editar os dados:', error);
-        
+
       }
     }
   };
+
+  const handleBusca = async (e) => {
+    e.preventDefault(); // Impede o comportamento padrão de envio do formulário
+    try {
+      const queryParams = Object.entries(formulario)
+        .filter(([key, value]) => value.trim() !== '')
+        .map(([key, value]) => `${key}=${encodeURIComponent(value)}`)
+        .join('&');
+
+      const response = await axios.get(`http://localhost:4000/pesquisar?${queryParams}`);
+      const data = response.data;
+
+      console.log(data); // Primeiro, console.log após receber os dados da API
+
+      if (data.message) {
+        console.error('Erro ao buscar dados:', data.message);
+      } else {
+        // Extrai as propriedades relevantes dos dados recebidos
+        const { codigo, nome, carro, motor, ano } = data[0];
+
+        // Atualiza o estado do formulário com os dados relevantes
+        setFormulario({ codigo, nome, carro, motor, ano });
+      }
+    } catch (error) {
+      console.error('Erro ao buscar dados:', error);
+    }
+  }
+
 
   return (
     <div className='container'>
@@ -39,6 +67,7 @@ const Editar = () => {
           <div>
             <label>Codigo:</label>
             <input type="text" name="codigo" value={formulario.codigo} onChange={handleChange} />
+            <button onClick={handleBusca}>Buscar</button>
           </div>
           <div>
             <label>Nome:</label>

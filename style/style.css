@@ -9,7 +9,7 @@ body{
   align-items: center;
   margin-top: 150px;
   height: 100vh;
-  width: 100vh;
+  width: 100vw;
   color: #fff; /* Cor do texto branca */
 }
 
