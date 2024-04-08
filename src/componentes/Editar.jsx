@@ -54,7 +54,9 @@ const Editar = () => {
         setFormulario({ codigo, nome, carro, motor, ano });
       }
     } catch (error) {
-      console.error('Erro ao buscar dados:', error);
+      if (error = 404) {
+        alert("Nenhuma aplicação foi encontrado na base de dados!");
+      }
     }
   }
 

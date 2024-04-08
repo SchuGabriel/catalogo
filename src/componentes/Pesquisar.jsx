@@ -46,6 +46,9 @@ const Pesquisar = () => {
   const handleDelete = async (index) => {
     const itemDelet = resultados[index];
     console.log("Deletando: ", itemDelet);
+    if (!confirm("Deseja deletar a aplicação: " + itemDelet.codigo + "?")) {
+      return;
+    }
     try {
       await axios.post('http://localhost:4000/deletar', itemDelet);
       alert('Aplicação deletada com sucesso!');
