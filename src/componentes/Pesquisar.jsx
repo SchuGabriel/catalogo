@@ -111,7 +111,6 @@ const Pesquisar = () => {
                   <p>Motor: {item.motor}</p>
                   <p>Ano: {item.ano}</p>
                   <div className="button-group">
-                    <button onClick={() => handleEdit(index)}>Editar</button>
                     <button onClick={() => handleDelete(index)}>Deletar</button>
                   </div>
                 </div>

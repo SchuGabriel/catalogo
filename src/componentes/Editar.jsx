@@ -66,8 +66,10 @@ const Editar = () => {
         <form onSubmit={handleSubmit}>
           <div>
             <label>Codigo:</label>
-            <input type="text" name="codigo" value={formulario.codigo} onChange={handleChange} />
-            <button onClick={handleBusca}>Buscar</button>
+            <div className="input-group">
+              <input type="text" id="codigo" name="codigo" value={formulario.codigo} onChange={handleChange} />
+              <button id="buscarButton" onClick={handleBusca}>Buscar</button>
+            </div>
           </div>
           <div>
             <label>Nome:</label>

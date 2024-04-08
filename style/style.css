@@ -2,39 +2,36 @@ body{
   background-color: #222;
 }
 
-/* Estilo para o contêiner principal */
 .container {
   display: flex;
-  flex-direction: column; /* Mudança para empilhar elementos verticalmente */
+  flex-direction: column;
   align-items: center;
   margin-top: 150px;
   height: 100vh;
   width: 100vw;
-  color: #fff; /* Cor do texto branca */
+  color: #fff;
 }
 
 .form-container {
   max-width: 600px;
-  width: 100%; /* Ocupa toda a largura do contêiner pai */
+  width: 100%;
   padding: 20px;
-  border: 1px solid #ffffff; /* Cor da borda mais escura */
+  border: 1px solid #ffffff;
   border-radius: 8px;
-  background-color: #444; /* Cor de fundo mais escura */
+  background-color: #444;
   box-sizing: border-box;
-  margin-bottom: 20px; /* Adicionado espaço entre o formulário e os resultados */
+  margin-bottom: 20px;
 }
 
-/* Estilo para o título */
 h2 {
   text-align: center;
   margin-bottom: 20px;
 }
 
-/* Estilo para os campos de entrada e rótulos */
 label {
   display: block;
   margin-bottom: 5px;
-  color: #ffffff; /* Cor do texto mais clara */
+  color: #ffffff;
 }
 
 .input-group {
@@ -50,18 +47,32 @@ label {
 input[type="text"],
 input[type="date"] {
   width: 100%;
+  width: calc(100% - 10px);
+  margin-right: 10px;
   padding: 8px;
-  border: 1px solid #444; /* Cor da borda mais escura */
+  border: 1px solid #444;
   border-radius: 4px;
-  background-color: #7e7e7e; /* Cor de fundo mais escura */
-  color: #ffffff; /* Cor do texto branca */
+  background-color: #7e7e7e;
+  color: #ffffff;
 }
 
-/* Estilo para o botão */
+.input-group {
+  display: flex;
+  align-items: center;
+}
+
+#codigo {
+  flex: 1;
+}
+
+#buscarButton {
+  margin-left: 10px;
+}
+
 button[type="submit"] {
   width: 100%;
   padding: 10px;
-  background-color: #007bff; /* Mantido o mesmo azul para destaque */
+  background-color: #007bff;
   color: #fff;
   border: none;
   border-radius: 4px;
@@ -71,14 +82,13 @@ button[type="submit"] {
 }
 
 button[type="submit"]:hover {
-  background-color: #0056b3; /* Mantido o mesmo azul mais escuro para hover */
+  background-color: #0056b3;
 }
 
-/* Estilos para o contêiner de resultados */
 .result-container {
-  width: calc(100% - 100px); /* Ajuste da largura para compensar a margem esquerda e direita */
-  margin-left: 50px; /* Adicionando margem esquerda */
-  margin-right: 50px; /* Adicionando margem direita */
+  width: calc(100% - 100px);
+  margin-left: 50px;
+  margin-right: 50px;
 }
 
 .result-list {

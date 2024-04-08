@@ -11,7 +11,6 @@ function Navegacao() {
                     <li><Link to="/pesquisar">Buscar Aplicacao</Link></li>
                     <li><Link to="/cadastrar">Cadastrar</Link></li>
                     <li><Link to="/editar">Editar cadastro</Link></li>
-                    <li><Link to="/deletar">Deletar cadastro</Link></li>
                 </ul>
             </nav>
         </header>
