@@ -1,4 +1,4 @@
-body{
+body {
   background-color: #222;
 }
 
@@ -104,32 +104,30 @@ button[type="submit"]:hover {
   margin-bottom: 20px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .result-group {
   display: flex;
   flex-direction: column;
+  flex: 1;
 }
 
 .result-group p {
   margin: 5px 0;
 }
 
-.result-item {
-  position: relative;
-}
-
 .button-group {
-  position: absolute;
-  top: 10px;
-  right: 10px;
+  display: flex;
+  align-items: center;
 }
 
-.edit-button {
-  margin-right: 5px;
+.button-group button {
+  margin-left: 5px;
 }
 
 .delete-button {
   background-color: red;
   color: white;
+  margin-left: auto;
 }

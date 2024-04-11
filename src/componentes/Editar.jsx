@@ -42,15 +42,12 @@ const Editar = () => {
       const response = await axios.get(`http://localhost:4000/pesquisar?${queryParams}`);
       const data = response.data;
 
-      console.log(data); // Primeiro, console.log após receber os dados da API
+      console.log(data);
 
       if (data.message) {
         console.error('Erro ao buscar dados:', data.message);
       } else {
-        // Extrai as propriedades relevantes dos dados recebidos
         const { codigo, nome, carro, motor, ano } = data[0];
-
-        // Atualiza o estado do formulário com os dados relevantes
         setFormulario({ codigo, nome, carro, motor, ano });
       }
     } catch (error) {
