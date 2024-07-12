@@ -1,3 +1,4 @@
+// src/App.jsx
 import React from "react";
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Home from "./componentes/Home";
@@ -6,6 +7,10 @@ import Pesquisar from "./componentes/Pesquisar";
 import Cadastrar from "./componentes/Cadastrar";
 import Editar from "./componentes/Editar";
 import Deletar from "./componentes/Deletar";
+import Login from "./componentes/Login";
+import Register from "./componentes/Register";
+import ProtectedComponent from "./componentes/ProtectedComponent";
+import ProtectedRoute from "./componentes/ProtectedRoute";
 
 function App() {
   return (
@@ -13,11 +18,14 @@ function App() {
       <BrowserRouter>
         <Navegacao />
         <Routes>
-          <Route index path="/" element={<Home />} />
-          <Route index path="/pesquisar" element={<Pesquisar />} />
-          <Route index path="/cadastrar" element={<Cadastrar />} />
-          <Route index path="/editar" element={<Editar />} />
-          <Route index path="/deletar" element={<Deletar />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/pesquisar" element={<ProtectedRoute><Pesquisar /></ProtectedRoute>} />
+          <Route path="/cadastrar" element={<ProtectedRoute><Cadastrar /></ProtectedRoute>} />
+          <Route path="/editar" element={<ProtectedRoute><Editar /></ProtectedRoute>} />
+          <Route path="/deletar" element={<ProtectedRoute><Deletar /></ProtectedRoute>} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/protected" element={<ProtectedRoute><ProtectedComponent /></ProtectedRoute>} />
         </Routes>
       </BrowserRouter>
     </main>
