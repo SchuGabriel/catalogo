@@ -1,7 +1,7 @@
 // Exemplo de seeder para inserir um usuário inicial na tabela Users
 
 'use strict';
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs'); // Certifique-se de usar bcryptjs aqui
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
@@ -21,6 +21,6 @@ module.exports = {
 
   down: async (queryInterface, Sequelize) => {
     // Remover o usuário inicial inserido
-    return queryInterface.bulkDelete('Users', { email: 'test@example.com' }, {});
+    return queryInterface.bulkDelete('Users', { email: 'schu-gabriel@hotmail.com' }, {});
   }
 };

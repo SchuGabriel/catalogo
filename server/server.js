@@ -1,19 +1,16 @@
-// server.js
-require('dotenv').config();
+require('dotenv').config({ path: require('path').resolve(__dirname, '../.env') });
+
 const express = require('express');
 const bodyParser = require('body-parser');
-const cors = require('cors'); // Importe o pacote cors
+const cors = require('cors');
 const authRoutes = require('../routes/authRoutes');
 
 const app = express();
 
-// Middleware para permitir o uso de JSON no corpo das requisições
+console.log('JWT_SECRET:', process.env.JWT_SECRET); // Adicione esta linha
+
 app.use(bodyParser.json());
-
-// Middleware para habilitar o CORS
 app.use(cors());
-
-// Rotas para autenticação
 app.use('/api/auth', authRoutes);
 
 const PORT = process.env.PORT || 3000;
