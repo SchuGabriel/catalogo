@@ -113,6 +113,35 @@ app.get('/api/veiculos/pesquisar', async (req, res) => {
   }
 });
 
+// Rota para editar um veículo
+app.put('/api/veiculos/editar/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { nome, carro, motor, ano } = req.body;
+
+    const veiculo = await Veiculo.findByPk(id);
+
+    if (!veiculo) {
+      return res.status(404).json({ erro: 'Veículo não encontrado.' });
+    }
+
+    // Atualiza os campos do veículo com os novos dados
+    veiculo.nome = nome;
+    veiculo.carro = carro;
+    veiculo.motor = motor;
+    veiculo.ano = ano;
+
+    // Salva as alterações no banco de dados
+    await veiculo.save();
+
+    res.json({ message: 'Veículo atualizado com sucesso', veiculo });
+  } catch (error) {
+    console.error('Erro ao editar veículo:', error);
+    res.status(500).json({ erro: 'Erro ao editar veículo. Tente novamente.' });
+  }
+});
+
+
 // Rota para deletar um veículo
 app.post('/api/veiculos/deletar', async (req, res) => {
   try {

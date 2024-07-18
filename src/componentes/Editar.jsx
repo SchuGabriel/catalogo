@@ -17,20 +17,6 @@ const Editar = () => {
     setFormulario({ ...formulario, [name]: value });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    console.log(formulario);
-    if (validarCadastro(formulario, "edicao")) {
-      try {
-        const response = await axios.put('http://localhost:4000/editar', formulario);
-        console.log(response.data);
-      } catch (error) {
-        console.error('Erro ao editar os dados:', error);
-
-      }
-    }
-  };
-
   const handleBusca = async (e) => {
     e.preventDefault(); // Impede o comportamento padrão de envio do formulário
     try {
@@ -39,7 +25,7 @@ const Editar = () => {
         .map(([key, value]) => `${key}=${encodeURIComponent(value)}`)
         .join('&');
 
-      const response = await axios.get(`http://localhost:4000/pesquisar?${queryParams}`);
+      const response = await axios.get(`http://localhost:4000/api/veiculos/pesquisar?${queryParams}`);
       const data = response.data;
 
       console.log(data);
@@ -51,12 +37,22 @@ const Editar = () => {
         setFormulario({ codigo, nome, carro, motor, ano });
       }
     } catch (error) {
-      if (error = 404) {
-        alert("Nenhuma aplicação foi encontrado na base de dados!");
+      console.error('Erro ao buscar veículo:', error);
+    }
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log(formulario);
+    if (validarCadastro(formulario, "edicao")) {
+      try {
+        const response = await axios.put(`http://localhost:4000/api/veiculos/editar/${formulario.codigo}`, formulario);
+        console.log(response.data);
+      } catch (error) {
+        console.error('Erro ao editar os dados:', error);
       }
     }
-  }
-
+  };
 
   return (
     <div className='container'>
@@ -83,7 +79,7 @@ const Editar = () => {
             <input type="text" name="motor" value={formulario.motor} onChange={handleChange} />
           </div>
           <div>
-            <label>De:</label>
+            <label>Ano:</label>
             <input type="text" name="ano" value={formulario.ano} onChange={handleChange} />
           </div>
           <button type="submit">Editar</button>
