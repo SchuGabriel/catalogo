@@ -3,7 +3,7 @@ const bcrypt = require('bcryptjs');
 const { User } = require('../models');
 
 const generateToken = (user) => {
-    console.log('JWT_SECRET inside generateToken:', process.env.JWT_SECRET); // Adicione esta linha
+    console.log('JWT_SECRET inside generateToken:', process.env.JWT_SECRET); // Verificação
     return jwt.sign({ id: user.id, role: user.role }, process.env.JWT_SECRET, { expiresIn: '1d' });
 };
 

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { validarCadastro } from '../validacao/ValidarCadastro';
-import "../../style/style.css"
+import "../../style/style.css";
 
 const Deletar = () => {
   const [formulario, setFormulario] = useState({
@@ -15,14 +15,14 @@ const Deletar = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formulario)
-    if (validarCadastro(formulario, "deletar")){
+    console.log(formulario);
+    if (validarCadastro(formulario, "deletar")) {
       try {
-        await axios.post('http://localhost:4000/deletar', formulario);
-        alert('Aplicação deletada com sucesso!');
+        await axios.post('http://localhost:3000/api/veiculos/deletar', { codigo: formulario.codigo });
+        alert('Veículo deletado com sucesso!');
       } catch (error) {
-        console.error('Erro ao cadastrar os dados:', error);
-        alert('Erro ao deletar a aplicação. Por favor, tente novamente.');
+        console.error('Erro ao deletar o veículo:', error);
+        alert('Erro ao deletar o veículo. Por favor, tente novamente.');
       }
     }
   };
@@ -30,10 +30,10 @@ const Deletar = () => {
   return (
     <div className='container'>
       <div className='form-container'>
-        <h2>Deletar Aplicação</h2>
+        <h2>Deletar Veículo</h2>
         <form onSubmit={handleSubmit}>
           <div>
-            <label>Codigo:</label>
+            <label>Código:</label>
             <input type="text" name="codigo" value={formulario.codigo} onChange={handleChange} />
           </div>
           <button type="submit">Deletar</button>

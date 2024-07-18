@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import "../../style/style.css"
+import "../../style/style.css";
 
 const Pesquisar = () => {
   const [formulario, setFormulario] = useState({
@@ -24,11 +24,11 @@ const Pesquisar = () => {
       const queryParams = Object.entries(formulario)
         .filter(([key, value]) => value.trim() !== '')
         .map(([key, value]) => `${key}=${encodeURIComponent(value)}`)
-        .join('&'); 
-      
-      const response = await axios.get(`http://localhost:4000/pesquisar?${queryParams}`);
+        .join('&');
+
+      const response = await axios.get(`http://localhost:3000/api/veiculos/pesquisar?${queryParams}`);
       const data = response.data;
-  
+
       if (data.message) {
         setErro(data.message);
         setResultados([]);
@@ -43,28 +43,25 @@ const Pesquisar = () => {
     }
   };
 
-  const handleDelete = async (index) => {
-    const itemDelet = resultados[index];
-    console.log("Deletando: ", itemDelet);
-    if (!confirm("Deseja deletar a aplicação: " + itemDelet.codigo + "?")) {
+  const handleDelete = async (codigo) => {
+    const confirmDelete = window.confirm("Deseja deletar o veículo com código: " + codigo + "?");
+    if (!confirmDelete) {
       return;
     }
     try {
-      await axios.post('http://localhost:4000/deletar', itemDelet);
-      alert('Aplicação deletada com sucesso!');
-      const updatedResults = [...resultados];
-      updatedResults.splice(index, 1);
-      setResultados(updatedResults);
+      await axios.post('http://localhost:3000/api/veiculos/deletar', { codigo });
+      alert('Veículo deletado com sucesso!');
+      setResultados(resultados.filter(item => item.codigo !== codigo));
     } catch (error) {
-      console.error('Erro ao deletar a aplicação:', error);
-      alert('Erro ao deletar a aplicação. Por favor, tente novamente.');
-    }    
-  }; 
+      console.error('Erro ao deletar o veículo:', error);
+      alert('Erro ao deletar o veículo. Por favor, tente novamente.');
+    }
+  };
 
   return (
     <div className='container'>
       <div className='form-container'>
-        <h2>Pesquisar Aplicação</h2>
+        <h2>Pesquisar Veículo</h2>
         <form onSubmit={handleSubmit}>
           <div>
             <label htmlFor="codigo">Código:</label>
@@ -95,14 +92,14 @@ const Pesquisar = () => {
           <ul className='result-list'>
             {resultados.map((item, index) => (
               <li key={index} className="result-item">
-                <div className="result-group">                  
+                <div className="result-group">
                   <p>Código: {item.codigo}</p>
                   <p>Nome: {item.nome}</p>
                   <p>Carro: {item.carro}</p>
                   <p>Motor: {item.motor}</p>
                   <p>Ano: {item.ano}</p>
                   <div className="button-group">
-                    <button onClick={() => handleDelete(index)}>Deletar</button>
+                    <button onClick={() => handleDelete(item.codigo)}>Deletar</button>
                   </div>
                 </div>
               </li>
